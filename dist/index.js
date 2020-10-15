@@ -7,6 +7,8 @@ const express_1 = __importDefault(require("express"));
 const cors_1 = __importDefault(require("cors"));
 const mail_1 = __importDefault(require("@sendgrid/mail"));
 const body_parser_1 = __importDefault(require("body-parser"));
+const dotenv_1 = __importDefault(require("dotenv"));
+dotenv_1.default.config();
 const sendGridAPI = process.env.SENDGRID_API_KEY;
 const app = express_1.default();
 app.use(cors_1.default());
@@ -32,7 +34,7 @@ app.post('/api/email', (req, res, next) => {
     mail_1.default.send(msg).then((result) => {
         res.status(200).json({ success: true });
     }).catch((error) => {
-        console.error(error);
+        console.log(error);
         res.send({ success: false });
     });
 });

@@ -2,6 +2,8 @@ import express from 'express';
 import cors from 'cors';
 import sgMail from '@sendgrid/mail';
 import bodyParser from 'body-parser';
+import dotenv from 'dotenv';
+dotenv.config();
 const sendGridAPI = process.env.SENDGRID_API_KEY;
 const app = express();
 
@@ -31,7 +33,7 @@ app.post('/api/email', (req, res, next) => {
     sgMail.send(msg).then((result:any) => {
         res.status(200).json({success: true})
     }).catch((error: Error) => {
-        console.error(error)
+        console.log(error)
         res.send({success: false})
     })
 })
