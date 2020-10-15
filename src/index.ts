@@ -20,7 +20,7 @@ app.get('/api', (req, res, next) => {
 
 app.post('/api/email', (req, res, next) => {
     console.log(req.body)
-    sgMail.setApiKey('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');
+    sgMail.setApiKey(sendGridAPI);
     const msg = {
         to: "zeheng.lin@outlook.com",
         from: req.body.email,
