@@ -46,7 +46,7 @@
       <workItem from="1602714066843" duration="4479000" />
       <workItem from="1602720450390" duration="598000" />
       <workItem from="1602781091173" duration="15000" />
-      <workItem from="1602781140559" duration="544000" />
+      <workItem from="1602781140559" duration="2134000" />
     </task>
     <servers />
   </component>
@@ -54,10 +54,18 @@
     <option name="version" value="3" />
   </component>
   <component name="WindowStateProjectService">
+    <state x="320" y="117" key="#Docker" timestamp="1602785064670">
+      <screen x="0" y="0" width="1440" height="900" />
+    </state>
+    <state x="320" y="117" key="#Docker/0.0.1440.900@0.0.1440.900" timestamp="1602785064670" />
     <state x="184" y="113" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1602714415957">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
     <state x="184" y="113" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1440.900@0.0.1440.900" timestamp="1602714415957" />
+    <state x="442" y="260" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1602785046186">
+      <screen x="0" y="0" width="1440" height="900" />
+    </state>
+    <state x="442" y="260" key="#com.intellij.fileTypes.FileTypeChooser/0.0.1440.900@0.0.1440.900" timestamp="1602785046186" />
     <state x="408" y="194" key="#com.intellij.openapi.updateSettings.impl.PluginUpdateInfoDialog" timestamp="1602781097901">
       <screen x="0" y="0" width="1440" height="900" />
     </state>

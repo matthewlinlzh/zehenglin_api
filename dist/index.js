@@ -22,7 +22,7 @@ app.get('/api', (req, res, next) => {
 });
 app.post('/api/email', (req, res, next) => {
     console.log(req.body);
-    mail_1.default.setApiKey('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');
+    mail_1.default.setApiKey(sendGridAPI);
     const msg = {
         to: "zeheng.lin@outlook.com",
         from: req.body.email,
@@ -30,7 +30,6 @@ app.post('/api/email', (req, res, next) => {
         text: req.body.message
     };
     mail_1.default.send(msg).then((result) => {
-        console.log(result);
         res.status(200).json({ success: true });
     }).catch((error) => {
         console.error(error);
