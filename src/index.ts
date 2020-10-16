@@ -31,7 +31,7 @@ app.post('/api/email', (req, res, next) => {
     }
 
     sgMail.send(msg).then((result:any) => {
-        res.status(200).json({success: true})
+        res.json({success: true})
     }).catch((error: Error) => {
         console.log(error)
         res.send({success: false})

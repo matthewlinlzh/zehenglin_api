@@ -32,7 +32,7 @@ app.post('/api/email', (req, res, next) => {
         text: req.body.message
     };
     mail_1.default.send(msg).then((result) => {
-        res.status(200).json({ success: true });
+        res.json({ success: true });
     }).catch((error) => {
         console.log(error);
         res.send({ success: false });

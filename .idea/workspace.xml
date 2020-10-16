@@ -70,5 +70,9 @@
       <screen x="0" y="0" width="1440" height="900" />
     </state>
     <state x="408" y="194" key="#com.intellij.openapi.updateSettings.impl.PluginUpdateInfoDialog/0.0.1440.900@0.0.1440.900" timestamp="1602781097901" />
+    <state x="458" y="205" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1602814830424">
+      <screen x="0" y="0" width="1440" height="900" />
+    </state>
+    <state x="458" y="205" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1440.900@0.0.1440.900" timestamp="1602814830424" />
   </component>
 </project>
