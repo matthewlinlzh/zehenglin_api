@@ -7,5 +7,9 @@ COPY ["package.json", "package-lock.json*", "./"]
 RUN npm install --production
 COPY . .
 
+ARG SENDGRID_API_KEY
+
+ENV SENDGRID_API_KEY=$SENDGRID_API_KEY
+
 CMD ["npm", "run", "start"]
 
