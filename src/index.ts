@@ -2,11 +2,9 @@ import express from 'express';
 import cors from 'cors';
 import sgMail from '@sendgrid/mail';
 import bodyParser from 'body-parser';
-import nodemailer from 'nodemailer';
-import nodemailerSendgrid from "nodemailer-sendgrid";
 import dotenv from 'dotenv';
 dotenv.config();
-const transport = nodemailer.createTransport(nodemailerSendgrid({apiKey: process.env.SENDGRID_API_KEY}));
+const SENDGRID_API_KEY =  process.env.SENDGRID_API_KEY;
 const app = express();
 
 app.use(cors());
@@ -24,6 +22,7 @@ app.get('/api', (req, res, next) => {
 
 app.post('/api/email', (req, res, next) => {
     console.log(req.body)
+    sgMail.setApiKey(SENDGRID_API_KEY)
     const msg = {
         to: "zeheng.lin@outlook.com",
         from: "matthewwantscs@gmail.com",
@@ -31,7 +30,7 @@ app.post('/api/email', (req, res, next) => {
         text: req.body.message
     }
 
-    transport.sendMail(msg).then((result:any) => {
+    sgMail.send(msg).then((result:any) => {
         res.json({success: true})
     }).catch((err: any) => {
         console.log(err)
