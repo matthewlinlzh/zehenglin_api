@@ -2,9 +2,11 @@ import express from 'express';
 import cors from 'cors';
 import sgMail from '@sendgrid/mail';
 import bodyParser from 'body-parser';
+import nodemailer from 'nodemailer';
+import nodemailerSendgrid from "nodemailer-sendgrid";
 import dotenv from 'dotenv';
 dotenv.config();
-const sendGridAPI = process.env.SENDGRID_API_KEY;
+const transport = nodemailer.createTransport(nodemailerSendgrid({apiKey: process.env.SENDGRID_API_KEY}));
 const app = express();
 
 app.use(cors());
@@ -22,18 +24,22 @@ app.get('/api', (req, res, next) => {
 
 app.post('/api/email', (req, res, next) => {
     console.log(req.body)
-    sgMail.setApiKey(sendGridAPI);
     const msg = {
         to: "zeheng.lin@outlook.com",
-        from: req.body.email,
-        subject: "Contact Email from website",
+        from: "matthewwantscs@gmail.com",
+        subject: `Contact Email from ${req.body.name} with email: ${req.body.email}` ,
         text: req.body.message
     }
 
-    sgMail.send(msg).then((result:any) => {
+    transport.sendMail(msg).then((result:any) => {
         res.json({success: true})
-    }).catch((error: Error) => {
-        console.log(error)
+    }).catch((err: any) => {
+        console.log(err)
+        if (err.response && err.response.body && err.response.body.errors) {
+            err.response.body.errors.forEach((error:any) => console.log('%s: %s', error.field, error.message));
+        } else {
+            console.log(err);
+        }
         res.send({success: false})
     })
 })

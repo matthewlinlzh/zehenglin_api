@@ -5,11 +5,12 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = __importDefault(require("express"));
 const cors_1 = __importDefault(require("cors"));
-const mail_1 = __importDefault(require("@sendgrid/mail"));
 const body_parser_1 = __importDefault(require("body-parser"));
+const nodemailer_1 = __importDefault(require("nodemailer"));
+const nodemailer_sendgrid_1 = __importDefault(require("nodemailer-sendgrid"));
 const dotenv_1 = __importDefault(require("dotenv"));
 dotenv_1.default.config();
-const sendGridAPI = process.env.SENDGRID_API_KEY;
+const transport = nodemailer_1.default.createTransport(nodemailer_sendgrid_1.default({ apiKey: process.env.SENDGRID_API_KEY }));
 const app = express_1.default();
 app.use(cors_1.default());
 app.use(body_parser_1.default.json());
@@ -24,17 +25,22 @@ app.get('/api', (req, res, next) => {
 });
 app.post('/api/email', (req, res, next) => {
     console.log(req.body);
-    mail_1.default.setApiKey(sendGridAPI);
     const msg = {
         to: "zeheng.lin@outlook.com",
-        from: req.body.email,
-        subject: "Contact Email from website",
+        from: "matthewwantscs@gmail.com",
+        subject: `Contact Email from ${req.body.name} with email: ${req.body.email}`,
         text: req.body.message
     };
-    mail_1.default.send(msg).then((result) => {
+    transport.sendMail(msg).then((result) => {
         res.json({ success: true });
-    }).catch((error) => {
-        console.log(error);
+    }).catch((err) => {
+        console.log(err);
+        if (err.response && err.response.body && err.response.body.errors) {
+            err.response.body.errors.forEach((error) => console.log('%s: %s', error.field, error.message));
+        }
+        else {
+            console.log(err);
+        }
         res.send({ success: false });
     });
 });
